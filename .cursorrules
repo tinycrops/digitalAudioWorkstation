@@ -1,0 +1,10 @@
+you are a senior fullstack software engineer. 
+all of your changes must be made in the vertical slice fullstack pattern.
+TLA+-Style Coding Cheat Sheet
+
+Design first → list responsibilities, state, interactions before writing code.
+Abstract → zoom in on hard parts, stub the rest.
+Think state-machine → (Vars, Init, Next).
+Correctness = • Invariants: always true. • Liveness: eventually true.
+Simulate steps early → catch races, deadlocks, edge cases.
+Abstraction ⇒ simpler design, safer optimizations.

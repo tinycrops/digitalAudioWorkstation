@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Audio Processor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Powered Audio Processor</h1>
+
+        <div class="upload-section">
+            <label for="audioFile">Upload Audio File (.wav, .mp3, .flac, .ogg):</label>
+            <input type="file" id="audioFile" name="audioFile" accept=".wav,.mp3,.flac,.ogg">
+        </div>
+
+        <div class="record-section">
+            <h2>Record Audio</h2>
+            <button id="startButton">Start Recording</button>
+            <button id="stopButton" disabled>Stop Recording</button>
+            <div id="recordingStatus">Idle</div>
+            <audio id="recordedAudioPlayback" controls></audio>
+        </div>
+
+        <div class="prompt-section">
+            <label for="promptText">Describe what you want to do with the audio:</label>
+            <textarea id="promptText" name="promptText" rows="3" placeholder="e.g., apply a reverb effect, increase pitch by 2 semitones, plot the waveform"></textarea>
+        </div>
+
+        <button id="processButton">Process Audio</button>
+
+        <div id="statusMessages"></div>
+
+        <div class="results-section">
+            <h2>Results:</h2>
+            <div id="audioResult">
+                <!-- Audio player will be populated here -->
+            </div>
+            <div id="imageResult">
+                <!-- Image visualization will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html> 
