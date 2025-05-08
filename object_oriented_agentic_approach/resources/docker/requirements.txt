@@ -6,3 +6,9 @@ scikit-learn==1.2.2
 librosa
 soundfile
 scipy
+pydub
+audioread
+PyWavelets
+# Add other libraries below as needed, for example:
+# madmom
+# sounddevice

@@ -1,7 +1,7 @@
 FROM python:3.10
 
 RUN apt-get update && \
-    apt-get install -y build-essential && \
+    apt-get install -y build-essential ffmpeg && \
     rm -rf /var/lib/apt/lists/*
 
 # Create a non-root user
@@ -11,5 +11,9 @@ WORKDIR /home/sandboxuser
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Verify installations
+RUN python -c "import pydub"
+RUN ffmpeg -version
 
 CMD ["python", "--version"]
