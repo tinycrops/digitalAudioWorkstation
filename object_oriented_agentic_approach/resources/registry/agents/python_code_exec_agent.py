@@ -89,7 +89,7 @@ class PythonExecAgent(BaseAgent):
                     10. **CRITICAL: Ensure your generated Python code is complete, syntactically flawless, and directly executable. Pay EXTREME attention to Python's indentation rules, correct loop structures, function definitions, and variable scoping. Double-check for common errors like incorrect indentation, mismatched parentheses/brackets, or undefined variables before finalizing the script. Test your logic mentally.**
                     11. IMPORTANT: The Python script you generate must always print the full output file path(s) (audio and/or image) each on its own new line at the very end of its execution, like: `print("/home/sandboxuser/output_audio/processed_audio.wav")` followed by `print("/home/sandboxuser/output_audio/visualization.png")` if applicable. These must be the last print statements from the script.
                 """,
-            model_name: str = "o3-mini",
+            model_name: str = "o4-mini",
             logger=myapp_logger,
             language_model_interface=language_model_api_interface,
             reasoning_effort: str = None  # optional; if provided, passed to API calls

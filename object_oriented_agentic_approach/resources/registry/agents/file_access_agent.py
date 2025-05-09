@@ -38,7 +38,7 @@ class FileAccessAgent(BaseAgent):
                  4.  You should NOT attempt to process or analyze the audio content itself beyond what the `prepare_audio_file_for_processing` tool provides. Your role is strictly file handling and context preparation for the audio processing agent.
                  5.  Do not include any additional commentary beyond the file path in the sandbox and its metadata.
                  """,
-                 model_name: str = "gpt-4o",
+                 model_name: str = "gpt-4.1-mini",
                  logger = myapp_logger,
                  language_model_interface = language_model_api_interface):
         super().__init__(developer_prompt=developer_prompt, model_name=model_name, logger=logger, language_model_interface=language_model_interface)

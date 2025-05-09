@@ -44,7 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
         displayMessage('Processing... Please wait.', 'info');
         processButton.disabled = true;
         audioResultDiv.innerHTML = ''; // Clear previous results
-        imageResultDiv.innerHTML = ''; // Clear previous results
+        // Clear previous image results by removing all children
+        while (imageResultDiv.firstChild) {
+            imageResultDiv.removeChild(imageResultDiv.firstChild);
+        }
 
         const formData = new FormData();
         formData.append('audioFile', audioFile);
