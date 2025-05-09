@@ -38,7 +38,7 @@ class FileAccessAgent(BaseAgent):
                  4.  You should NOT attempt to process or analyze the media content itself beyond what the `prepare_media_file_for_processing` tool provides. Your role is strictly file handling and context preparation for the media processing agent.
                  5.  Do not include any additional commentary beyond the file path in the sandbox and its metadata.
                  """,
-                 model_name: str = "gpt-4o", # Keep gpt-4o for its reliability with tool use and instructions
+                 model_name: str = "gpt-4.1-mini", 
                  logger = myapp_logger,
                  language_model_interface = language_model_api_interface):
         super().__init__(developer_prompt=developer_prompt, model_name=model_name, logger=logger, language_model_interface=language_model_interface)
