@@ -127,6 +127,16 @@ button#processButton:disabled {
     margin-top: 8px;
 }
 
+.results-section video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 8px;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+    background: #000;
+}
+
 .results-section img {
     max-width: 100%;
     height: auto;

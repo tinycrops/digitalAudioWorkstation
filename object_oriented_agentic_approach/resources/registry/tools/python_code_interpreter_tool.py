@@ -17,7 +17,11 @@ class PythonExecTool(ToolInterface):
         return {
             "function": {
                 "name": "execute_python_code",
-                "description": "Executes Python code securely in a container. Python version 3.10 is installed. Key libraries available: librosa, soundfile, numpy, scipy, matplotlib. Use for audio processing, transformation, and visualization.",
+                "description": (
+                    "Executes Python code securely in a container. Python version 3.10 is installed. "
+                    "Key libraries available for audio: librosa, soundfile, pydub, numpy, scipy, matplotlib. "
+                    "Key libraries for video: moviepy, opencv-python (cv2). Use for audio/video processing, transformation, and visualization."
+                ),
                 "parameters": {
                     "type": "object",
                     "properties": {

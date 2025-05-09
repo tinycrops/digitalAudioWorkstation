@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const processButton = document.getElementById('processButton');
     const statusMessagesDiv = document.getElementById('statusMessages');
     const audioResultDiv = document.getElementById('audioResult');
+    const videoResultDiv = document.getElementById('videoResult');
     const imageResultDiv = document.getElementById('imageResult');
 
     // Audio Recording elements
@@ -15,6 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let mediaRecorder;
     let audioChunks = [];
     let recordedBlob = null; // To store the final recorded audio Blob
+
+    // Update file input accept attribute for both audio and video
+    audioFileInput.setAttribute('accept', '.wav,.mp3,.flac,.ogg,.webm,.mp4,.mov,.avi,.mkv');
 
     processButton.addEventListener('click', async () => {
         const promptText = promptTextInput.value.trim();
@@ -29,11 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (audioFileInput.files.length > 0) {
             // Otherwise, use the uploaded file
             audioFile = audioFileInput.files[0];
-            console.log("Using uploaded audio file.", audioFile);
+            console.log("Using uploaded media file.", audioFile);
         }
 
         if (!audioFile) {
-            displayMessage('Please select or record an audio file.', 'error');
+            displayMessage('Please select or record a media file (audio or video).', 'error');
             return;
         }
         if (!promptText) {
@@ -43,8 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         displayMessage('Processing... Please wait.', 'info');
         processButton.disabled = true;
-        audioResultDiv.innerHTML = ''; // Clear previous results
-        imageResultDiv.innerHTML = ''; // Clear previous results
+        audioResultDiv.innerHTML = '';
+        videoResultDiv.innerHTML = '';
+        imageResultDiv.innerHTML = '';
 
         const formData = new FormData();
         formData.append('audioFile', audioFile);
@@ -70,6 +75,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             fileLabel.textContent = `Processed audio (${fileInfo.filename || 'output'}):`;
                             audioResultDiv.appendChild(fileLabel);
                             audioResultDiv.appendChild(audioElement);
+                        } else if (fileInfo.type === 'video' && fileInfo.url) {
+                            const videoElement = document.createElement('video');
+                            videoElement.controls = true;
+                            videoElement.src = fileInfo.url;
+                            videoElement.style.maxWidth = '100%';
+                            videoElement.style.marginTop = '8px';
+                            const fileLabel = document.createElement('p');
+                            fileLabel.textContent = `Processed video (${fileInfo.filename || 'output'}):`;
+                            videoResultDiv.appendChild(fileLabel);
+                            videoResultDiv.appendChild(videoElement);
                         } else if (fileInfo.type === 'image' && fileInfo.url) {
                             const imgElement = document.createElement('img');
                             imgElement.src = fileInfo.url;
@@ -80,8 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             imageResultDiv.appendChild(imgElement);
                         }
                     });
-                    if (audioResultDiv.innerHTML === '' && imageResultDiv.innerHTML === '') {
-                         displayMessage(result.message || 'Processing completed, but no displayable audio or image output was found.', 'warning');
+                    if (audioResultDiv.innerHTML === '' && videoResultDiv.innerHTML === '' && imageResultDiv.innerHTML === '') {
+                         displayMessage(result.message || 'Processing completed, but no displayable audio, video, or image output was found.', 'warning');
                     }
                 } else {
                     // No files, but potentially a message from the agent (e.g. if it just chatted)

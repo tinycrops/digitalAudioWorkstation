@@ -29,7 +29,7 @@ class AgentSignature:
         if self.tool_manager:
             # Each item in get_tool_definitions() looks like {"type": "function", "function": {...}}
             tool_definitions = self.tool_manager.get_tool_definitions()
-            functions = [t for t in tool_definitions]
+            functions = [t for t in tool_definitions] # This creates a shallow copy, which is fine.
         else:
             functions = []
 

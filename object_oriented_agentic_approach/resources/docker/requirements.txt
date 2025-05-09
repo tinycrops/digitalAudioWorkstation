@@ -10,5 +10,9 @@ pydub
 audioread
 PyWavelets
 # Add other libraries below as needed, for example:
+# For video processing
+moviepy
+opencv-python
+imageio-ffmpeg # often a good companion for moviepy
 # madmom
 # sounddevice

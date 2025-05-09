@@ -34,7 +34,7 @@ app = Flask(__name__)
 # --- Configuration ---
 UPLOAD_FOLDER = os.path.join(WORKSPACE_ROOT, 'uploads')
 PROCESSED_OUTPUTS_FOLDER = os.path.join(WORKSPACE_ROOT, 'processed_outputs')
-ALLOWED_EXTENSIONS = {'wav', 'mp3', 'flac', 'ogg', 'webm'}
+ALLOWED_EXTENSIONS = {'wav', 'mp3', 'flac', 'ogg', 'webm', 'mp4', 'mov', 'avi', 'mkv'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['PROCESSED_OUTPUTS_FOLDER'] = PROCESSED_OUTPUTS_FOLDER
@@ -100,7 +100,7 @@ def process_audio_route():
 
             # 1. FileAccessAgent: Prepare audio
             logging.info(f"Tasking FileAccessAgent for: {host_uploaded_audio_path}")
-            file_access_task_str = f"Prepare the audio file located at host path '{host_uploaded_audio_path}' for processing."
+            file_access_task_str = f"Prepare the media file located at host path '{host_uploaded_audio_path}' for processing."
             ingestion_output_str = file_ingestion_agent.task(file_access_task_str)
             logging.info(f"FileAccessAgent output: {ingestion_output_str}")
 
@@ -206,8 +206,9 @@ def process_audio_route():
                     actual_host_path = retrieved_host_path_msg.split("File retrieved to: ", 1)[-1].strip()
                     filename = os.path.basename(actual_host_path)
                     file_url = f"/processed/{filename}"
-                    file_type = ("audio" if any(filename.lower().endswith(ext) for ext in (ALLOWED_EXTENSIONS | {'.ogg', '.webm'}))
+                    file_type = ("audio" if any(filename.lower().endswith(ext) for ext in (['.wav', '.mp3', '.flac', '.ogg'] + list(ALLOWED_EXTENSIONS & {'.webm'})))
                                  else "image" if any(filename.lower().endswith(ext) for ext in ['.png', '.jpg', '.jpeg', '.gif'])
+                                 else "video" if any(filename.lower().endswith(ext) for ext in (['.mp4', '.mov', '.avi', '.mkv'] + list(ALLOWED_EXTENSIONS & {'.webm'})))
                                  else "unknown")
                     processed_files_info.append({
                         "url": file_url,

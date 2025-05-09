@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Audio Processor</title>
+    <title>AI Media Processor</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>AI Powered Audio Processor</h1>
+        <h1>AI Powered Media Processor</h1>
 
         <div class="upload-section">
-            <label for="audioFile">Upload Audio File (.wav, .mp3, .flac, .ogg):</label>
-            <input type="file" id="audioFile" name="audioFile" accept=".wav,.mp3,.flac,.ogg">
+            <label for="audioFile">Upload Media File (audio or video):</label>
+            <input type="file" id="audioFile" name="audioFile" accept=".wav,.mp3,.flac,.ogg,.webm,.mp4,.mov,.avi,.mkv">
         </div>
 
         <div class="record-section">
@@ -24,11 +24,11 @@
         </div>
 
         <div class="prompt-section">
-            <label for="promptText">Describe what you want to do with the audio:</label>
-            <textarea id="promptText" name="promptText" rows="3" placeholder="e.g., apply a reverb effect, increase pitch by 2 semitones, plot the waveform"></textarea>
+            <label for="promptText">Describe what you want to do with the media file:</label>
+            <textarea id="promptText" name="promptText" rows="3" placeholder="e.g., apply a reverb effect, trim video, plot the waveform, extract a frame at 10s"></textarea>
         </div>
 
-        <button id="processButton">Process Audio</button>
+        <button id="processButton">Process Media</button>
 
         <div id="statusMessages"></div>
 
@@ -36,6 +36,9 @@
             <h2>Results:</h2>
             <div id="audioResult">
                 <!-- Audio player will be populated here -->
+            </div>
+            <div id="videoResult">
+                <!-- Video player will be populated here -->
             </div>
             <div id="imageResult">
                 <!-- Image visualization will be populated here -->
